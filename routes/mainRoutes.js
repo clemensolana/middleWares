@@ -2,10 +2,13 @@ const express = require('express');
 
 const router = express.Router();
 const mainController = require('../controllers/mainControllers');
-const loginMiddleware = require('../middlewares/userLogs');
+const regMiddleware = require('../middlewares/userLogs');
+const loginMiddleware = require('../middlewares/loginLogs');
 
-router.get('/', loginMiddleware, mainController.home);
-router.get('/prueba', mainController.prueba);
-router.get('/pruebaDos', mainController.pruebaDos);
+router.get('/', regMiddleware, mainController.home);
+router.get('/prueba', regMiddleware, mainController.prueba);
+router.get('/pruebaDos', regMiddleware, mainController.pruebaDos);
+
+router.get('/admin', loginMiddleware, mainController.admin);
 
 module.exports = router;
